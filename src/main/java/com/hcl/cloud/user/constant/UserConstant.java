@@ -9,4 +9,7 @@ package com.hcl.cloud.user.constant;
  */
 public class UserConstant {
 
+	public static String AUTH_TOKEN="accessToken";
+	public static String ADMIN_ROLE="admin";
+	public static String USER_ROLE="user";
 }

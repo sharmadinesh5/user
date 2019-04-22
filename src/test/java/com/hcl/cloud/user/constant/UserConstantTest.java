@@ -20,7 +20,10 @@ public class UserConstantTest {
 	public static String CITY="Noida";
 	public static String COUNTRY="India";
 	public static String STATE="U.P";
+	public static String BILLING="BILLING";
+	public static String SHIPPING="SHIPPING";
 	public static int PINCODE=203303;
+	public static String AUTH_TOKEN="accessToken";
 	
 	
 }

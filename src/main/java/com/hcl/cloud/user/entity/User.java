@@ -41,8 +41,8 @@ public class User {
 	private String email;
 	private String first_name;
 	private String last_name;
-	@OneToMany(mappedBy="userAddress", cascade = CascadeType.ALL)
-	private List<Address> user_address;
+	@OneToMany(mappedBy="userAddress", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	private List<Address> user_address=new ArrayList<>();
 	private String password;
 	private long phone_number;
 	private boolean active_user = true;

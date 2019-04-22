@@ -25,7 +25,7 @@ public class Address {
 	private String city;
 	private String country;
 	private String state;
-	private long pincode;
+	private int pincode;
 	private String addressType;
 	
 		/**
@@ -124,7 +124,7 @@ public class Address {
 	 *
 	 * @return the pincode
 	 */
-	public long getPincode() {
+	public int getPincode() {
 		return pincode;
 	}
 	/**
@@ -132,7 +132,7 @@ public class Address {
 	 * @param pincode the pincode to set
 	 */
 	@Column(name = "pincode")
-	public void setPincode(long pincode) {
+	public void setPincode(int pincode) {
 		this.pincode = pincode;
 	}
 	/**
