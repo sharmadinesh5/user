@@ -2,6 +2,8 @@ package com.hcl.cloud.user.DTO;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+@JsonIgnoreProperties("id")
 public class UserDTO {
 	private long id;
 	private String userName;
@@ -10,8 +12,29 @@ public class UserDTO {
 	private String last_name;
 	private List<AddressDTO> user_address;
 	private String password;
+	private String role;
 	private long phone_number;
-	private boolean active_user;
+	//private boolean active_user;
+	private Integer active=1; 
+	private boolean isLoacked=false;   
+	private boolean isExpired=false;  
+	private boolean isEnabled=true;
+
+	/**
+	 *
+	 * @return the role
+	 */
+	public String getRole() {
+		return role;
+	}
+
+	/**
+	 *
+	 * @param role the role to set
+	 */
+	public void setRole(String role) {
+		this.role = role;
+	}
 
 	/**
 	 *
@@ -30,7 +53,6 @@ public class UserDTO {
 	}
 
 
-	
 	/**
 	 *
 	 * @param id
@@ -40,11 +62,16 @@ public class UserDTO {
 	 * @param last_name
 	 * @param user_address
 	 * @param password
+	 * @param role
 	 * @param phone_number
-	 * @param active_user
+	 * @param active
+	 * @param isLoacked
+	 * @param isExpired
+	 * @param isEnabled
 	 */
 	public UserDTO(long id, String userName, String email, String first_name, String last_name,
-			List<AddressDTO> user_address, String password, long phone_number, boolean active_user) {
+			List<AddressDTO> user_address, String password, String role, long phone_number, Integer active,
+			boolean isLoacked, boolean isExpired, boolean isEnabled) {
 		super();
 		this.id = id;
 		this.userName = userName;
@@ -53,8 +80,76 @@ public class UserDTO {
 		this.last_name = last_name;
 		this.user_address = user_address;
 		this.password = password;
+		this.role = role;
 		this.phone_number = phone_number;
-		this.active_user = active_user;
+		this.active = active;
+		this.isLoacked = isLoacked;
+		this.isExpired = isExpired;
+		this.isEnabled = isEnabled;
+	}
+
+	/**
+	 *
+	 * @return the active
+	 */
+	public Integer getActive() {
+		return active;
+	}
+
+	/**
+	 *
+	 * @param active the active to set
+	 */
+	public void setActive(Integer active) {
+		this.active = active;
+	}
+
+	/**
+	 *
+	 * @return the isLoacked
+	 */
+	public boolean isLoacked() {
+		return isLoacked;
+	}
+
+	/**
+	 *
+	 * @param isLoacked the isLoacked to set
+	 */
+	public void setLoacked(boolean isLoacked) {
+		this.isLoacked = isLoacked;
+	}
+
+	/**
+	 *
+	 * @return the isExpired
+	 */
+	public boolean isExpired() {
+		return isExpired;
+	}
+
+	/**
+	 *
+	 * @param isExpired the isExpired to set
+	 */
+	public void setExpired(boolean isExpired) {
+		this.isExpired = isExpired;
+	}
+
+	/**
+	 *
+	 * @return the isEnabled
+	 */
+	public boolean isEnabled() {
+		return isEnabled;
+	}
+
+	/**
+	 *
+	 * @param isEnabled the isEnabled to set
+	 */
+	public void setEnabled(boolean isEnabled) {
+		this.isEnabled = isEnabled;
 	}
 
 	public UserDTO() {
@@ -167,19 +262,19 @@ public class UserDTO {
 		this.phone_number = phone_number;
 	}
 
-	/**
+/*	*//**
 	 * @return the active_user
-	 */
+	 *//*
 	public boolean isActive_user() {
 		return active_user;
 	}
 
-	/**
+	*//**
 	 * @param active_user
 	 *            the active_user to set
-	 */
+	 *//*
 	public void setActive_user(boolean active_user) {
 		this.active_user = active_user;
-	}
+	}*/
 
 }

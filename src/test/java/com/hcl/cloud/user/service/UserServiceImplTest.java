@@ -1,6 +1,6 @@
 /**
  * Copyright (c) HCL PCF TEAM ,2019
- */
+ *//*
 package com.hcl.cloud.user.service;
 
 import java.util.ArrayList;
@@ -20,63 +20,62 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import com.hcl.cloud.user.DTO.AddressDTO;
 import com.hcl.cloud.user.DTO.UserDTO;
 import com.hcl.cloud.user.constant.UserConstantTest;
-import com.hcl.cloud.user.entity.Address;
 import com.hcl.cloud.user.entity.User;
 import com.hcl.cloud.user.repository.UserRepository;
 import com.hcl.cloud.user.service.impl.UserServiceImpl;
 
-/**
+*//**
  * com.user.usermodule.service abhishek_sin
- */
+ *//*
 @PrepareForTest(UserServiceImpl.class)
 @RunWith(PowerMockRunner.class)
 public class UserServiceImplTest {
 
-	/**
+	*//**
 	 * USERDTO Mock
-	 */
+	 *//*
 	@Mock
 	private UserDTO userDTOMock;
-	/**
+	*//**
 	 * USER Mock
-	 */
+	 *//*
 	@Mock
 	private User userMock;
-	/**
+	*//**
 	 * userRepository
-	 */
+	 *//*
 	@Mock
 	private UserRepository userRepositoryMock;
-	/**
+	*//**
 	 * ModelMapper
-	 */
+	 *//*
 	@Mock
 	private ModelMapper modelMapperMock;
-	/**
+	*//**
 	 * Address
-	 */
+	 *//*
 	@Mock
 	private AddressDTO addressDTOMock;
-	/**
+	*//**
 	 * Mock Object for {@link UserServiceImpl}
-	 */
+	 *//*
 	@InjectMocks
 	private UserServiceImpl userServiceImplMock;
 
-	/**
+	*//**
 	 * This Method is called before the test is executed.
 	 * 
 	 * @throws Exception
-	 */
+	 *//*
 	@Before
 	public void setUp() throws Exception {
 		modelMapperMock = new ModelMapper();
 		this.userServiceImplMock = Mockito.spy(new UserServiceImpl());
 		MockitoAnnotations.initMocks(this);
 	}
-	/**
+	*//**
 	 * saveUserdetailsTest
-	 */
+	 *//*
 	@Test
 	public void saveUserdetailsSuccessTest() {
 		Mockito.when(addressDTOMock.getAddress()).thenReturn(UserConstantTest.ADDRESS);
@@ -101,7 +100,7 @@ public class UserServiceImplTest {
 		userDTO.setPhone_number(UserConstantTest.PHONE_NUMBAR);
 		userDTO.setUserName(UserConstantTest.USER_NAME);
 		userDTO.setEmail(UserConstantTest.EMAIL);
-		userDTO.setActive_user(true);
+		//userDTO.setActive_user(true);
 		userDTO.setUser_address(addDTOList);
 		Mockito.when(userDTOMock.getUserName()).thenReturn(UserConstantTest.USER_NAME);
 		Mockito.when(userDTOMock.getEmail()).thenReturn(UserConstantTest.EMAIL);
@@ -113,9 +112,9 @@ public class UserServiceImplTest {
 		Mockito.when(userDTOMock.getUser_address()).thenReturn(addDTOList);
 		userServiceImplMock.saveUser(userDTO);
 	}
-	/**
+	*//**
 	 * saveUserdetailsFailTest
-	 */
+	 *//*
 	@Test
 	public void saveUserdetailsFailTest() {
 		Mockito.when(addressDTOMock.getAddress()).thenReturn(UserConstantTest.ADDRESS);
@@ -140,9 +139,9 @@ public class UserServiceImplTest {
 	}
 
 
-	/**
+	*//**
 	 * updateUserdetailsTest
-	 */
+	 *//*
 	@Test
 	public void updateUserdetailsTest() {
 		List<AddressDTO> addDTOList = new ArrayList<>();
@@ -169,9 +168,9 @@ public class UserServiceImplTest {
 		userServiceImplMock.updateUser(userDTO);
 	}
 
-	/**
+	*//**
 	 * deleteUserdetailsTest
-	 */
+	 *//*
 	@Test
 	public void deleteUserdetailsTest() {
 		Mockito.when(userRepositoryMock.save(userMock)).thenReturn(userMock);
@@ -179,11 +178,32 @@ public class UserServiceImplTest {
 		userServiceImplMock.deleteUser(UserConstantTest.USER_NAME);
 	}
 	
-	/**
+	*//**
 	 * deleteUserdetailsFailTest
-	 */
+	 *//*
 	@Test
 	public void deleteUserdetailsFailTest() {
 		userServiceImplMock.deleteUser(UserConstantTest.USER_NAME);
 	}
+	
+	*//**
+	 * findUserRoleByID
+	 *//*
+	@Test
+	public void findUserRoleByIDTest() {
+		List<User> userList = new ArrayList<>();
+		 User user=new User();
+		 user.setFirst_name(UserConstantTest.FIRST_NAME);
+		 user.setLast_name(UserConstantTest.LAST_NAME);
+		 user.setPassword(UserConstantTest.PASSWORD);
+		 user.setPhone_number(UserConstantTest.PHONE_NUMBAR);
+		 user.setUserName(UserConstantTest.USER_NAME);
+		 user.setEmail(UserConstantTest.EMAIL);
+		 userList.add(user);
+		Mockito.when(userRepositoryMock.findByUserName(UserConstantTest.USER_ID)).thenReturn(user);
+		Mockito.when(userRepositoryMock.findAll()).thenReturn(userList);
+		Mockito.when(userRepositoryMock.findUserRoleById(UserConstantTest.USER_ID)).thenReturn(UserConstantTest.USER_ID);
+		userServiceImplMock.findUserRoleByID(UserConstantTest.AUTH_TOKEN);
+	}
 }
+*/

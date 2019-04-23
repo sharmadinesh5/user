@@ -4,6 +4,7 @@
 package com.hcl.cloud.user.entity;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -34,20 +35,26 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="user_id")
+	@Column(name="id")
 	private long id;
-	@Column(name = "userName" , unique=true)
+	@Column(name = "userId")
 	private String userName;
+	@Column(name = "email" , unique=true)
 	private String email;
 	private String first_name;
 	private String last_name;
-	@OneToMany(mappedBy="userAddress", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private List<Address> user_address=new ArrayList<>();
+	@OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+	@JoinColumn(name="user_id")
+	private Set<Address> user_address =  new HashSet<>();
 	private String password;
 	private long phone_number;
-	private boolean active_user = true;
+	//private boolean active_user = true;
 	private String role;
-	
+	private Integer active=1; 
+	private boolean isLoacked=false;   
+	private boolean isExpired=false;  
+	private boolean isEnabled=true;
+
 	/**
 	 * Default constructor
 	 */
@@ -82,18 +89,29 @@ public class User {
 	 *
 	 * @return the user_address
 	 */
-	public List<Address> getUser_address() {
+	public Set<Address> getUser_address() {
 		return user_address;
 	}
+
+
+
 
 
 	/**
 	 *
 	 * @param user_address the user_address to set
 	 */
-	public void setUser_address(List<Address> user_address) {
+	public void setUser_address(Set<Address> user_address) {
 		this.user_address = user_address;
 	}
+
+
+
+
+
+	/**
+	 *
+	
 
 
 	/**
@@ -227,28 +245,34 @@ public class User {
 	/**
 	 *
 	 * @return the active_user
-	 */
+	 *//*
 	public boolean isActive_user() {
 		return active_user;
 	}
 
-	/**
+	*//**
 	 *
 	 * @param active_user
 	 *            the active_user to set
-	 */
+	 *//*
 	@Column(name = "status")
 	public void setActive_user(boolean active_user) {
 		this.active_user = active_user;
-	}
+	}*/
 
 
 
 
 
 	/**
-	
-	 
+	 *
+	 * @return the active
+	 */
+	public Integer getActive() {
+		return active;
+	}
+
+	/**
 	 *
 	 * @param id
 	 * @param userName
@@ -258,11 +282,15 @@ public class User {
 	 * @param user_address
 	 * @param password
 	 * @param phone_number
-	 * @param active_user
 	 * @param role
+	 * @param active
+	 * @param isLoacked
+	 * @param isExpired
+	 * @param isEnabled
 	 */
-	public User(long id, String userName, String email, String first_name, String last_name, List<Address> user_address,
-			String password, long phone_number, boolean active_user, String role) {
+	public User(long id, String userName, String email, String first_name, String last_name, Set<Address> user_address,
+			String password, long phone_number, String role, Integer active, boolean isLoacked, boolean isExpired,
+			boolean isEnabled) {
 		super();
 		this.id = id;
 		this.userName = userName;
@@ -272,8 +300,95 @@ public class User {
 		this.user_address = user_address;
 		this.password = password;
 		this.phone_number = phone_number;
-		this.active_user = active_user;
 		this.role = role;
+		this.active = active;
+		this.isLoacked = isLoacked;
+		this.isExpired = isExpired;
+		this.isEnabled = isEnabled;
+	}
+
+
+
+
+
+	/**
+	 *
+	 * @param active the active to set
+	 */
+	public void setActive(Integer active) {
+		this.active = active;
+	}
+
+
+
+
+
+	/**
+	 *
+	 * @return the isLoacked
+	 */
+	public boolean isLoacked() {
+		return isLoacked;
+	}
+
+
+
+
+
+	/**
+	 *
+	 * @param isLoacked the isLoacked to set
+	 */
+	public void setLoacked(boolean isLoacked) {
+		this.isLoacked = isLoacked;
+	}
+
+
+
+
+
+	/**
+	 *
+	 * @return the isExpired
+	 */
+	public boolean isExpired() {
+		return isExpired;
+	}
+
+
+
+
+
+	/**
+	 *
+	 * @param isExpired the isExpired to set
+	 */
+	public void setExpired(boolean isExpired) {
+		this.isExpired = isExpired;
+	}
+
+
+
+
+
+	/**
+	 *
+	 * @return the isEnabled
+	 */
+	public boolean isEnabled() {
+		return isEnabled;
+	}
+
+
+
+
+
+	/**
+	 *
+	 * @param isEnabled the isEnabled to set
+	 */
+	public void setEnabled(boolean isEnabled) {
+		this.isEnabled = isEnabled;
 	}
 
 	

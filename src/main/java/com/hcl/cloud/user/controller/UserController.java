@@ -39,7 +39,6 @@ public class UserController {
 	@Autowired
 	public UserService userService;
 	
-	//private String accessToken ="accessToken";
 
 	/**
 	 * 
@@ -52,7 +51,7 @@ public class UserController {
 		logger.debug("user details: "+user);
 		}
 		User userDetails=userService.saveUser(user);
-		return new ResponseEntity<>(userDetails, HttpStatus.OK);
+		return new ResponseEntity<User>(userDetails, HttpStatus.OK);
 	}
 
 	/**
@@ -63,7 +62,7 @@ public class UserController {
 	 * @throws NotFoundException 
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.PUT)
-	public ResponseEntity<String> updateUserDetails(@RequestBody UserDTO user) {
+	public ResponseEntity<String> updateUserDetails(@RequestBody UserDTO user,@RequestHeader(value = "accessToken", required = true) String accessToken) {
 	userService.updateUser(user);
 		logger.debug("updateUserDetails : " + user);
 		return new ResponseEntity<>("Successfully updated ", HttpStatus.OK);
@@ -83,34 +82,6 @@ public class UserController {
 	}
 
 	/**
-	 * getUserDetailsByID method are fetching user details by user ID
-	 *
-	 * @param user
-	 * @return
-	 */
-	@RequestMapping(value = "/getUserDetailsByID/{userid}", method = RequestMethod.GET)
-	public ResponseEntity<UserDTO> getUserDetailsByID(@PathVariable("userid") String userid) {
-		UserDTO userDTO = new UserDTO();
-		AddressDTO address = new AddressDTO();
-		List<AddressDTO> list = new ArrayList<>();
-		list.add(address);
-	//	userDTO.setUser_name("abhishek2067");
-		userDTO.setEmail("abhishek@hcl.com");
-		userDTO.setPassword("**********");
-		userDTO.setFirst_name("Abhi");
-		userDTO.setLast_name("Singh");
-		address.setAddress("Sector 126");
-		address.setCity("Noida");
-		address.setState("U.P");
-		address.setCountry("India");
-		address.setPinCode(201303);
-		userDTO.setPhone_number(9594806263l);
-		userDTO.setUser_address(list);
-		// userService.updateUser();
-		return new ResponseEntity<>(userDTO, HttpStatus.OK);
-	}
-
-	/**
 	 * deleteUserDetailsByID method are soft deleting user details Change the user
 	 * active flag are false after delete operation
 	 * 
@@ -118,7 +89,7 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{userid}", method = RequestMethod.DELETE)
-	public ResponseEntity<String> deleteUserDetailsByID(@PathVariable("userid") String userid) {
+	public ResponseEntity<String> deleteUserDetailsByID(@PathVariable("userid") String userid,@RequestHeader(value = "accessToken", required = true) String accessToken) {
 		String message = null;
 		message = userService.deleteUser(userid);
 		return new ResponseEntity<>(message, HttpStatus.OK);

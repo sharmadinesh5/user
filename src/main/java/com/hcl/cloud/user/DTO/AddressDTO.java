@@ -1,5 +1,8 @@
 package com.hcl.cloud.user.DTO;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties("id")
 public class AddressDTO {
 	private long id;
 	private String address;

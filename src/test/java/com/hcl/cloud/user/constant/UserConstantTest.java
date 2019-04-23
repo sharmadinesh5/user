@@ -24,6 +24,7 @@ public class UserConstantTest {
 	public static String SHIPPING="SHIPPING";
 	public static int PINCODE=203303;
 	public static String AUTH_TOKEN="accessToken";
+	public static String USER_ID="userid";  
 	
 	
 }
