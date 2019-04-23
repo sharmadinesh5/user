@@ -12,24 +12,22 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * com.hcl.cloud.user.SwaggerConfig
- * abhishek_sin
+ * com.hcl.cloud.user.SwaggerConfig abhishek_sin
  */
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
 
-       @SuppressWarnings("deprecation")
-       public static final ApiInfo DEFAULT_CUSTOM_INFO = new ApiInfo("User Microservice API Documents",
-                     "User Microservice API Documents", "1.0.0", "urn:tos", "abhishek_sin@hcl.com", "Cloud Foundry",
-                     "http://www.pivotal.org/licenses/LICENSE-2.0");
+	@SuppressWarnings("deprecation")
+	public static final ApiInfo DEFAULT_CUSTOM_INFO = new ApiInfo("User Microservice API Documents",
+			"User Microservice API Documents", "1.0.0", "urn:tos", "abhishek_sin@hcl.com", "Cloud Foundry",
+			"http://www.pivotal.org/licenses/LICENSE-2.0");
 
-       @Bean
-       public Docket postsApi() {
+	@Bean
+	public Docket postsApi() {
 
-              return new Docket(DocumentationType.SWAGGER_2).apiInfo(DEFAULT_CUSTOM_INFO);
+		return new Docket(DocumentationType.SWAGGER_2).apiInfo(DEFAULT_CUSTOM_INFO);
 
-       }
+	}
 
 }
-

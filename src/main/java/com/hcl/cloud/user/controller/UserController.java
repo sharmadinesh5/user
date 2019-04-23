@@ -1,5 +1,5 @@
 /**
- * 
+ * Copyright (c) HCL PCF TEAM ,2019.
  */
 package com.hcl.cloud.user.controller;
 
@@ -35,14 +35,16 @@ import com.hcl.cloud.user.service.UserService;
 public class UserController {
 	
 	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(UserController.class);
-  
+	/**
+	 * userService.
+	 */
 	@Autowired
 	public UserService userService;
 	
 
 	/**
 	 * 
-	 *
+	 *saveUserDetails.
 	 * @param user
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.POST)
@@ -55,7 +57,7 @@ public class UserController {
 	}
 
 	/**
-	 * updateUserDetails method are updating user details
+	 * updateUserDetails method are updating user details.
 	 *
 	 * @param user
 	 * @return
@@ -69,7 +71,7 @@ public class UserController {
 	}
 
 	/**
-	 * getAllUserDetails method are fetching all user details
+	 * getAllUserDetails method are fetching all user details.
 	 *
 	 * @param user
 	 * @return
@@ -82,8 +84,8 @@ public class UserController {
 	}
 
 	/**
-	 * deleteUserDetailsByID method are soft deleting user details Change the user
-	 * active flag are false after delete operation
+	 * deleteUserDetailsByID method are soft deleting user details Change the user.
+	 * active flag are false after delete operation.
 	 * 
 	 * @param userID
 	 * @return

@@ -4,12 +4,19 @@
 package com.hcl.cloud.user.constant;
 
 /**
- * com.hcl.cloud.user.constant
- * abhishek_sin
+ * com.hcl.cloud.user.constant. abhishek_sin
  */
 public class UserConstant {
-
-	public static String AUTH_TOKEN="accessToken";
-	public static String ADMIN_ROLE="admin";
-	public static String USER_ROLE="user";
+	/**
+	 * AUTH_TOKEN.
+	 */
+	public static String AUTHTOKEN = "accessToken";
+	/**
+	 * ADMIN_ROLE.
+	 */
+	public static String ADMINROLE = "admin";
+	/**
+	 * USER_ROLE.
+	 */
+	public static String USERROLE = "user";
 }

@@ -1,36 +1,82 @@
+/**
+ * Copyright (c) HCL PCF TEAM ,2019.
+ */
 package com.hcl.cloud.user.DTO;
 
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+/**
+ * com.hcl.cloud.user.DTO. abhishek_sin
+ */
 @JsonIgnoreProperties("id")
 public class UserDTO {
+	/**
+	 * id.
+	 */
 	private long id;
+	/**
+	 * userName.
+	 */
 	private String userName;
+	/**
+	 * email.
+	 */
 	private String email;
-	private String first_name;
-	private String last_name;
-	private List<AddressDTO> user_address;
+	/**
+	 * first_name.
+	 */
+	private String firstName;
+	/**
+	 * last_name.
+	 */
+	private String lastName;
+	/**
+	 * user_address.
+	 */
+	private List<AddressDTO> userAddress;
+	/**
+	 * password.
+	 */
 	private String password;
+	/**
+	 * role.
+	 */
 	private String role;
-	private long phone_number;
-	//private boolean active_user;
-	private Integer active=1; 
-	private boolean isLoacked=false;   
-	private boolean isExpired=false;  
-	private boolean isEnabled=true;
+	/**
+	 * phone_number.
+	 */
+	private long phoneNumber;
+	/**
+	 * active.
+	 */
+	private Integer active = 1;
+	/**
+	 * isLoacked.
+	 */
+	private boolean isLoacked = false;
+	/**
+	 * isExpired.
+	 */
+	private boolean isExpired = false;
+	/**
+	 * isEnabled.
+	 */
+	private boolean isEnabled = true;
 
 	/**
 	 *
-	 * @return the role
+	 * @return the role.
 	 */
-	public String getRole() {
+	public final String getRole() {
 		return role;
 	}
 
 	/**
 	 *
-	 * @param role the role to set
+	 * @param role
+	 *            the role to set.
 	 */
 	public void setRole(String role) {
 		this.role = role;
@@ -38,67 +84,33 @@ public class UserDTO {
 
 	/**
 	 *
-	 * @return the id
+	 * @return the id.
 	 */
-	public long getId() {
+	public final long getId() {
 		return id;
 	}
 
 	/**
 	 *
-	 * @param id the id to set
-	 */
-	public void setId(long id) {
-		this.id = id;
-	}
-
-
-	/**
-	 *
 	 * @param id
-	 * @param userName
-	 * @param email
-	 * @param first_name
-	 * @param last_name
-	 * @param user_address
-	 * @param password
-	 * @param role
-	 * @param phone_number
-	 * @param active
-	 * @param isLoacked
-	 * @param isExpired
-	 * @param isEnabled
+	 *            the id to set.
 	 */
-	public UserDTO(long id, String userName, String email, String first_name, String last_name,
-			List<AddressDTO> user_address, String password, String role, long phone_number, Integer active,
-			boolean isLoacked, boolean isExpired, boolean isEnabled) {
-		super();
+	public final void setId(long id) {
 		this.id = id;
-		this.userName = userName;
-		this.email = email;
-		this.first_name = first_name;
-		this.last_name = last_name;
-		this.user_address = user_address;
-		this.password = password;
-		this.role = role;
-		this.phone_number = phone_number;
-		this.active = active;
-		this.isLoacked = isLoacked;
-		this.isExpired = isExpired;
-		this.isEnabled = isEnabled;
 	}
 
 	/**
 	 *
-	 * @return the active
+	 * @return the active.
 	 */
-	public Integer getActive() {
+	public final Integer getActive() {
 		return active;
 	}
 
 	/**
 	 *
-	 * @param active the active to set
+	 * @param active
+	 *            the active to set.
 	 */
 	public void setActive(Integer active) {
 		this.active = active;
@@ -106,15 +118,16 @@ public class UserDTO {
 
 	/**
 	 *
-	 * @return the isLoacked
+	 * @return the isLoacked.
 	 */
-	public boolean isLoacked() {
+	public final boolean isLoacked() {
 		return isLoacked;
 	}
 
 	/**
 	 *
-	 * @param isLoacked the isLoacked to set
+	 * @param isLoacked
+	 *            the isLoacked to set.
 	 */
 	public void setLoacked(boolean isLoacked) {
 		this.isLoacked = isLoacked;
@@ -122,15 +135,16 @@ public class UserDTO {
 
 	/**
 	 *
-	 * @return the isExpired
+	 * @return the isExpired.
 	 */
-	public boolean isExpired() {
+	public final boolean isExpired() {
 		return isExpired;
 	}
 
 	/**
 	 *
-	 * @param isExpired the isExpired to set
+	 * @param isExpired
+	 *            the isExpired to set.
 	 */
 	public void setExpired(boolean isExpired) {
 		this.isExpired = isExpired;
@@ -138,42 +152,46 @@ public class UserDTO {
 
 	/**
 	 *
-	 * @return the isEnabled
+	 * @return the isEnabled.
 	 */
-	public boolean isEnabled() {
+	public final boolean isEnabled() {
 		return isEnabled;
 	}
 
 	/**
 	 *
-	 * @param isEnabled the isEnabled to set
+	 * @param isEnabled
+	 *            the isEnabled to set.
 	 */
 	public void setEnabled(boolean isEnabled) {
 		this.isEnabled = isEnabled;
 	}
 
+	/**
+	 * Default constructor .
+	 */
 	public UserDTO() {
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @return the email
+	 * @return the email.
 	 */
-	public String getEmail() {
+	public final String getEmail() {
 		return email;
 	}
 
 	/**
 	 *
-	 * @return the userName
+	 * @return the userName.
 	 */
-	public String getUserName() {
+	public final String getUserName() {
 		return userName;
 	}
 
 	/**
 	 *
-	 * @param userName the userName to set
+	 * @param userName
+	 *            the userName to set.
 	 */
 	public void setUserName(String userName) {
 		this.userName = userName;
@@ -181,100 +199,93 @@ public class UserDTO {
 
 	/**
 	 * @param email
-	 *            the email to set
+	 *            the email to set.
 	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
 	/**
-	 * @return the first_name
+	 * @return the password.
 	 */
-	public String getFirst_name() {
-		return first_name;
-	}
-
-	/**
-	 * @param first_name
-	 *            the first_name to set
-	 */
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
-	}
-
-	/**
-	 * @return the last_name
-	 */
-	public String getLast_name() {
-		return last_name;
-	}
-
-	/**
-	 * @param last_name
-	 *            the last_name to set
-	 */
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
-	}
-
-	/**
-	 * @return the user_address
-	 */
-	public List<AddressDTO> getUser_address() {
-		return user_address;
-	}
-
-	/**
-	 * @param user_address
-	 *            the user_address to set
-	 */
-	public void setUser_address(List<AddressDTO> user_address) {
-		this.user_address = user_address;
-	}
-
-	/**
-	 * @return the password
-	 */
-	public String getPassword() {
+	public final String getPassword() {
 		return password;
 	}
 
 	/**
 	 * @param password
-	 *            the password to set
+	 *            the password to set.
 	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
 	/**
-	 * @return the phone_number
+	 *
+	 * @return the firstName.
 	 */
-	public long getPhone_number() {
-		return phone_number;
+	public final String getFirstName() {
+		return firstName;
 	}
 
 	/**
-	 * @param phone_number
-	 *            the phone_number to set
+	 *
+	 * @param firstName
+	 *            the firstName to set.
 	 */
-	public void setPhone_number(long phone_number) {
-		this.phone_number = phone_number;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-/*	*//**
-	 * @return the active_user
-	 *//*
-	public boolean isActive_user() {
-		return active_user;
+	/**
+	 *
+	 * @return the lastName.
+	 */
+	public final String getLastName() {
+		return lastName;
 	}
 
-	*//**
-	 * @param active_user
-	 *            the active_user to set
-	 *//*
-	public void setActive_user(boolean active_user) {
-		this.active_user = active_user;
-	}*/
+	/**
+	 *
+	 * @param lastName
+	 *            the lastName to set.
+	 */
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	/**
+	 *
+	 * @return the userAddress.
+	 */
+	public final List<AddressDTO> getUserAddress() {
+		return userAddress;
+	}
+
+	/**
+	 *
+	 * @param userAddress
+	 *            the userAddress to set.
+	 */
+	public void setUserAddress(List<AddressDTO> userAddress) {
+		this.userAddress = userAddress;
+	}
+
+	/**
+	 *
+	 * @return the phoneNumber.
+	 */
+	public final long getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	/**
+	 *
+	 * @param phoneNumber
+	 *            the phoneNumber to set.
+	 */
+	public void setPhoneNumber(long phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 
 }

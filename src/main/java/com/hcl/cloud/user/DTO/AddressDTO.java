@@ -2,28 +2,53 @@ package com.hcl.cloud.user.DTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/**
+ *
+ * com.hcl.cloud.user.DTO. abhishek_sin
+ */
 @JsonIgnoreProperties("id")
 public class AddressDTO {
+	/**
+	 * id.
+	 */
 	private long id;
+	/**
+	 * address.
+	 */
 	private String address;
+	/**
+	 * city.
+	 */
 	private String city;
+	/**
+	 * country.
+	 */
 	private String country;
+	/**
+	 * state.
+	 */
 	private String state;
+	/**
+	 * pincode.
+	 */
 	private int pincode;
+	/**
+	 * addressType.
+	 */
 	private String addressType;
 
-		
 	/**
 	 *
-	 * @return the id
+	 * @return the id.
 	 */
-	public long getId() {
+	public final long getId() {
 		return id;
 	}
 
 	/**
 	 *
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set.
 	 */
 	public void setId(long id) {
 		this.id = id;
@@ -31,15 +56,16 @@ public class AddressDTO {
 
 	/**
 	 *
-	 * @return the addressType
+	 * @return the addressType.
 	 */
-	public String getAddressType() {
+	public final String getAddressType() {
 		return addressType;
 	}
 
 	/**
 	 *
-	 * @param addressType the addressType to set
+	 * @param addressType
+	 *            the addressType to set.
 	 */
 	public void setAddressType(String addressType) {
 		this.addressType = addressType;
@@ -47,93 +73,93 @@ public class AddressDTO {
 
 	/**
 	 *
-	 * @param pincode the pincode to set
+	 * @param pincode
+	 *            the pincode to set.
 	 */
-	public void setPincode(int pincode) {
+	public final void setPincode(int pincode) {
 		this.pincode = pincode;
 	}
 
 	/**
-	 * Default constructor 
+	 * Default constructor .
 	 */
 	public AddressDTO() {
-		
+
 	}
+
 	/**
-	 * @return the state
+	 * @return the state.
 	 */
-	public String getState() {
+	public final String getState() {
 		return state;
 	}
 
 	/**
 	 * @param state
-	 *            the state to set
+	 *            the state to set.
 	 */
 	public void setState(String state) {
 		this.state = state;
 	}
 
 	/**
-	 * @return the pin
+	 * @return the pin.
 	 */
-	public int getPincode() {
+	public final int getPincode() {
 		return pincode;
 	}
 
 	/**
 	 * @param pin
-	 *            the pin to set
+	 *            the pin to set.
 	 */
 	public void setPinCode(int pincode) {
 		this.pincode = pincode;
 	}
 
 	/**
-	 * @return the address
+	 * @return the address.
 	 */
-	public String getAddress() {
+	public final String getAddress() {
 		return address;
 	}
 
 	/**
 	 * @param address
-	 *            the address to set
+	 *            the address to set.
 	 */
 	public void setAddress(String address) {
 		this.address = address;
 	}
 
 	/**
-	 * @return the city
+	 * @return the city.
 	 */
-	public String getCity() {
+	public final String getCity() {
 		return city;
 	}
 
 	/**
 	 * @param city
-	 *            the city to set
+	 *            the city to set.
 	 */
 	public void setCity(String city) {
 		this.city = city;
 	}
 
 	/**
-	 * @return the country
+	 * @return the country.
 	 */
-	public String getCountry() {
+	public final String getCountry() {
 		return country;
 	}
 
 	/**
 	 * @param country
-	 *            the country to set
+	 *            the country to set.
 	 */
 	public void setCountry(String country) {
 		this.country = country;
 	}
-
-	
 
 }
