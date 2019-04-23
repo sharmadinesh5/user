@@ -49,6 +49,9 @@ public class User {
 	 * lastName.
 	 */
 	private String lastName;
+	/**
+	 * userAddress.
+	 */
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
 	private Set<Address> userAddress = new HashSet<>();
@@ -82,132 +85,129 @@ public class User {
 	private boolean isEnabled = true;
 
 	/**
-	 * Default constructor
+	 * Default constructor.
 	 */
 	public User() {
 	}
 
 	/**
 	 *
-	 * @return the id
+	 * @return the id.
 	 */
-	public long getId() {
+	public final long getId() {
 		return id;
 	}
 
 	/**
 	 *
 	 * @param id
-	 *            the id to set
+	 *            the id to set.
 	 */
 
-	public void setId(long id) {
+	public final void setId(final long id) {
 		this.id = id;
 	}
 
 	/**
 	 *
-	 * @return the userAddress
+	 * @return tag for userAddress.
 	 */
-	public Set<Address> getUserAddress() {
+	public final Set<Address> getUserAddress() {
 		return userAddress;
 	}
 
 	/**
 	 *
 	 * @param userAddress
-	 *            the userAddress to set
+	 *            the userAddress to set.
 	 */
-	public void setUserAddress(Set<Address> userAddress) {
+	public final void setUserAddress(final Set<Address> userAddress) {
 		this.userAddress = userAddress;
 	}
 
 	/**
 	 *
-	 * @return the role
+	 * @return tag for role.
 	 */
-	public String getRole() {
+	public final String getRole() {
 		return role;
 	}
 
 	/**
 	 *
 	 * @param role
-	 *            the role to set
+	 *            the role to set.
 	 */
 	@Column(name = "role")
-	public void setRole(String role) {
+	public final void setRole(final String role) {
 		this.role = role;
 	}
 
 	/**
 	 *
-	 * @return the userName
+	 * @return tag for userName.
 	 */
-	public String getUserName() {
+	public final String getUserName() {
 		return userName;
 	}
 
 	/**
 	 *
 	 * @param userName
-	 *            the userName to set
+	 *            the userName to set.
 	 */
 
-	public void setUserName(String userName) {
+	public final void setUserName(final String userName) {
 		this.userName = userName;
 	}
 
 	/**
 	 *
-	 * @return the email
+	 * @return tag for email.
 	 */
-	public String getEmail() {
+	public final String getEmail() {
 		return email;
 	}
 
 	/**
 	 *
 	 * @param email
-	 *            the email to set
+	 *            the email to set.
 	 */
 	@Column(name = "email")
-	public void setEmail(String email) {
+	public final void setEmail(final String email) {
 		this.email = email;
 	}
 
 	/**
 	 *
-	 *
-	 * /**
-	 *
-	 * @return the password
+	 * @return tag for password
 	 */
-	public String getPassword() {
+	public final String getPassword() {
 		return password;
 	}
 
 	/**
 	 *
 	 * @param password
-	 *            the password to set
+	 *            the password to set.
 	 */
 	@Column(name = "password")
-	public void setPassword(String password) {
+	public final void setPassword(final String password) {
 		this.password = password;
 	}
 
 	/**
 	 *
-	 * @return the active.
+	 * @return tag for active.
 	 */
-	public Integer getActive() {
+	public final Integer getActive() {
 		return active;
 	}
 
 	/**
 	 *
-	 * @param active.
+	 * @param active
 	 *            the active to set.
 	 */
 	public void setActive(Integer active) {
@@ -216,9 +216,9 @@ public class User {
 
 	/**
 	 *
-	 * @return the isLoacked.
+	 * @return tag isLoacked.
 	 */
-	public boolean isLoacked() {
+	public final boolean isLoacked() {
 		return isLoacked;
 	}
 
@@ -233,9 +233,9 @@ public class User {
 
 	/**
 	 *
-	 * @return the isExpired.
+	 * @return tag isExpired.
 	 */
-	public boolean isExpired() {
+	public final boolean isExpired() {
 		return isExpired;
 	}
 
@@ -244,15 +244,15 @@ public class User {
 	 * @param isExpired
 	 *            the isExpired to set.
 	 */
-	public void setExpired(boolean isExpired) {
+	public final void setExpired(final boolean isExpired) {
 		this.isExpired = isExpired;
 	}
 
 	/**
 	 *
-	 * @return the isEnabled.
+	 * @return tag isEnabled.
 	 */
-	public boolean isEnabled() {
+	public final boolean isEnabled() {
 		return isEnabled;
 	}
 
@@ -261,15 +261,15 @@ public class User {
 	 * @param isEnabled
 	 *            the isEnabled to set.
 	 */
-	public void setEnabled(boolean isEnabled) {
+	public final void setEnabled(final boolean isEnabled) {
 		this.isEnabled = isEnabled;
 	}
 
 	/**
 	 *
-	 * @return the firstName.
+	 * @return tag firstName.
 	 */
-	public String getFirstName() {
+	public final String getFirstName() {
 		return firstName;
 	}
 
@@ -278,15 +278,15 @@ public class User {
 	 * @param firstName
 	 *            the firstName to set.
 	 */
-	public void setFirstName(String firstName) {
+	public final void setFirstName(final String firstName) {
 		this.firstName = firstName;
 	}
 
 	/**
 	 *
-	 * @return the lastName.
+	 * @return tag lastName.
 	 */
-	public String getLastName() {
+	public final String getLastName() {
 		return lastName;
 	}
 
@@ -295,15 +295,15 @@ public class User {
 	 * @param lastName
 	 *            the lastName to set.
 	 */
-	public void setLastName(String lastName) {
+	public final void setLastName(final String lastName) {
 		this.lastName = lastName;
 	}
 
 	/**
 	 *
-	 * @return the phoneNumber.
+	 * @return tag phoneNumber.
 	 */
-	public long getPhoneNumber() {
+	public final long getPhoneNumber() {
 		return phoneNumber;
 	}
 

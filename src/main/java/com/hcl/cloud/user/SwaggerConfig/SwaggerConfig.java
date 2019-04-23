@@ -17,12 +17,19 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
-
+	/**
+	 * ApiInfo
+	 */
 	@SuppressWarnings("deprecation")
 	public static final ApiInfo DEFAULT_CUSTOM_INFO = new ApiInfo("User Microservice API Documents",
 			"User Microservice API Documents", "1.0.0", "urn:tos", "abhishek_sin@hcl.com", "Cloud Foundry",
 			"http://www.pivotal.org/licenses/LICENSE-2.0");
 
+	/**
+	 * ApiInfo
+	 *
+	 * @return tag for postsapi
+	 */
 	@Bean
 	public Docket postsApi() {
 

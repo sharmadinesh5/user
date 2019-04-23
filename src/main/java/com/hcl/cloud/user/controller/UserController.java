@@ -39,8 +39,9 @@ public class UserController {
 	/**
 	 *
 	 * saveUserDetails.
-	 * 
+	 *
 	 * @param user
+	 *            for save user details in DB.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public ResponseEntity<User> saveUserDetails(@RequestBody UserDTO user,
@@ -48,14 +49,15 @@ public class UserController {
 		if (logger.isDebugEnabled()) {
 			logger.debug("user details: " + user);
 		}
-		User userDetails = userService.saveUser(user);
-		return new ResponseEntity<User>(userDetails, HttpStatus.OK);
+		final User userDetails = userService.saveUser(user);
+		return new ResponseEntity<>(userDetails, HttpStatus.OK);
 	}
 
 	/**
 	 * updateUserDetails method are updating user details.
 	 *
 	 * @param user
+	 *            for updateUserDetails method are updating user details.
 	 * @return
 	 * @throws NotFoundException
 	 */
@@ -71,13 +73,14 @@ public class UserController {
 	 * getAllUserDetails method are fetching all user details.
 	 *
 	 * @param user
+	 *            for get all user details.
 	 * @return
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ResponseEntity<List<UserDTO>> getAllUserDetails(
 			@RequestHeader(value = "accessToken", required = true) String accessToken) {
 
-		List<UserDTO> userDetails = userService.findUserRoleByID(accessToken);
+		final List<UserDTO> userDetails = userService.findUserRoleByID(accessToken);
 		return new ResponseEntity<>(userDetails, HttpStatus.OK);
 	}
 
@@ -86,6 +89,7 @@ public class UserController {
 	 * active flag are false after delete operation.
 	 *
 	 * @param userID
+	 *            delete user details by ID.
 	 * @return
 	 */
 	@RequestMapping(value = "/{userid}", method = RequestMethod.DELETE)

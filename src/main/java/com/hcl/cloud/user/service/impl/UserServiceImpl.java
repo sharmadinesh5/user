@@ -38,17 +38,9 @@ public class UserServiceImpl implements UserService {
 
 	/**
 	 *
-	 * @return
-	 */
-	@Override
-	public Iterable<UserDTO> findAllUser() {
-		return null;
-	}
-
-	/**
-	 *
 	 * @param user
-	 * @return
+	 *            for save.
+	 * @return tag for user.
 	 */
 	@Override
 	@Transactional
@@ -65,6 +57,7 @@ public class UserServiceImpl implements UserService {
 	/**
 	 *
 	 * @param userDTO
+	 *            for update user.
 	 * @throws NotFoundException
 	 */
 	@Override
@@ -83,12 +76,14 @@ public class UserServiceImpl implements UserService {
 	 * translateDTO
 	 *
 	 * @param userDTO
+	 *            for translateDTO.
 	 * @param user
-	 * @return
+	 *            for User.
+	 * @return tag for user.
 	 */
 	public User translateDTO(UserDTO userDTO, User user) {
 		LOG.debug("Enter translateDTO method: " + userDTO);
-		UUID uuid = UUID.randomUUID();
+		final UUID uuid = UUID.randomUUID();
 		user.setUserName(uuid.toString());
 		user.setEmail(userDTO.getEmail());
 		user.setFirstName(userDTO.getFirstName());
@@ -99,7 +94,7 @@ public class UserServiceImpl implements UserService {
 		user.setExpired(userDTO.isExpired());
 		user.setLoacked(userDTO.isLoacked());
 		user.setRole(userDTO.getRole());
-		Set<Address> set = translateAddressDTO(userDTO.getUserAddress(), user);
+		final Set<Address> set = translateAddressDTO(userDTO.getUserAddress(), user);
 		user.setPassword(userDTO.getPassword());
 		user.setUserAddress(set);
 		return user;
@@ -110,14 +105,16 @@ public class UserServiceImpl implements UserService {
 	 * translateDTO
 	 *
 	 * @param userDTO
+	 *            for translateDTO.
 	 * @param user
-	 * @return
+	 *            for List.
+	 * @return for user DTO.
 	 */
 	public List<UserDTO> translateUserDetails(List<User> users) {
 		LOG.debug("Enter translateDTO method: " + users);
-		UserDTO dto = new UserDTO();
-		List<UserDTO> userDTOs = new ArrayList<>();
-		for (User user : users) {
+		final UserDTO dto = new UserDTO();
+		final List<UserDTO> userDTOs = new ArrayList<>();
+		for (final User user : users) {
 			dto.setUserName(user.getUserName());
 			dto.setEmail(user.getEmail());
 			dto.setFirstName(user.getFirstName());
@@ -135,13 +132,14 @@ public class UserServiceImpl implements UserService {
 	 * translate Address DTO
 	 *
 	 * @param addressDto
-	 * @return
+	 *            translate Address DTO.
+	 * @return tag for address.
 	 */
 	public Set<Address> translateAddressDTO(List<AddressDTO> addressDto, User user) {
-		Set<Address> addressSet = new HashSet<>();
+		final Set<Address> addressSet = new HashSet<>();
 		LOG.debug("Enter translateAddressDTO method and addressDto: " + addressDto);
-		for (AddressDTO addr : addressDto) {
-			Address address = new Address();
+		for (final AddressDTO addr : addressDto) {
+			final Address address = new Address();
 			address.setAddressDescription(addr.getAddress());
 			address.setAddressType(addr.getAddressType());
 			address.setCity(addr.getCity());
@@ -160,13 +158,14 @@ public class UserServiceImpl implements UserService {
 	 * translate Address DTO
 	 *
 	 * @param addressDto
-	 * @return
+	 *            translate Address.
+	 * @return tag for addressDTO.
 	 */
 	public List<AddressDTO> translateAddress(Set<Address> address) {
-		List<AddressDTO> addressList = new ArrayList<>();
-		AddressDTO addressDto = new AddressDTO();
+		final List<AddressDTO> addressList = new ArrayList<>();
+		final AddressDTO addressDto = new AddressDTO();
 		LOG.debug("Enter translateAddressDTO method and addressDto: " + addressDto);
-		for (Address addr : address) {
+		for (final Address addr : address) {
 			addressDto.setAddress(addr.getAddressDescription());
 			addressDto.setAddressType(addr.getAddressType());
 			addressDto.setCity(addr.getCity());
@@ -181,11 +180,12 @@ public class UserServiceImpl implements UserService {
 	/**
 	 *
 	 * @param userId
+	 *            for Delete user.
 	 */
 	@Override
 	public String deleteUser(String emailId) {
 		LOG.debug("Enter deleteUser method and userId: " + emailId);
-		User user = userRepository.findByEmail(emailId);
+		final User user = userRepository.findByEmail(emailId);
 		if (user != null) {
 			userRepository.save(user);
 			LOG.debug("Updated active flag ");
@@ -196,7 +196,8 @@ public class UserServiceImpl implements UserService {
 	/**
 	 *
 	 * @param userId
-	 * @return
+	 *            for find user role by id.
+	 * @return tag for user DTO.
 	 */
 	@Override
 	@Transactional
@@ -204,8 +205,8 @@ public class UserServiceImpl implements UserService {
 		User user = null;
 		List<User> userList = new ArrayList<>();
 		List<UserDTO> dtos = null;
-		String emailID = getUserIDFromAccessToken(accessToken);
-		String userRole = userRepository.findUserRoleById(emailID);
+		final String emailID = getUserIDFromAccessToken(accessToken);
+		final String userRole = userRepository.findUserRoleById(emailID);
 		if (UserConstant.ADMINROLE.equalsIgnoreCase(userRole)) {
 			userList = userRepository.findAll();
 			dtos = translateUserDetails(userList);
@@ -221,7 +222,7 @@ public class UserServiceImpl implements UserService {
 	 * getUserIDFromAccessToken
 	 */
 	public String getUserIDFromAccessToken(String accessToken) {
-		String userID = "abhi@hcl.com";
+		final String userID = "abhi@hcl.com";
 		return userID;
 
 	}
