@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.hcl.cloud.user.controller;
 
@@ -14,6 +14,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+
 import com.hcl.cloud.user.DTO.UserDTO;
 import com.hcl.cloud.user.constant.UserConstantTest;
 import com.hcl.cloud.user.entity.User;
@@ -56,7 +57,7 @@ public class UserControllerTest {
 
 	/**
 	 * This Method is called before the test is executed.
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@Before
@@ -71,7 +72,7 @@ public class UserControllerTest {
 	@Test
 	public void saveUserDetailsTest() {
 		Mockito.when(userServiceMock.saveUser(userDTOMock)).thenReturn(userMock);
-		userControllerMock.saveUserDetails(userDTOMock, UserConstantTest.AUTH_TOKEN);
+		userControllerMock.saveUserDetails(userDTOMock, UserConstantTest.AUTHTOKEN);
 	}
 
 	/**
@@ -79,8 +80,8 @@ public class UserControllerTest {
 	 */
 	@Test
 	public void getAllUserDetailsTest() {
-		Mockito.when(userServiceMock.findUserRoleByID(UserConstantTest.AUTH_TOKEN)).thenReturn(userDetailsMock);
-		userControllerMock.getAllUserDetails(UserConstantTest.AUTH_TOKEN);
+		Mockito.when(userServiceMock.findUserRoleByID(UserConstantTest.AUTHTOKEN)).thenReturn(userDetailsMock);
+		userControllerMock.getAllUserDetails(UserConstantTest.AUTHTOKEN);
 	}
 
 	/**
@@ -88,8 +89,8 @@ public class UserControllerTest {
 	 */
 	@Test
 	public void deleteUserDetailsByIDTest() {
-		Mockito.when(userServiceMock.deleteUser(UserConstantTest.USER_ID)).thenReturn(null);
-		userControllerMock.deleteUserDetailsByID(UserConstantTest.USER_ID, UserConstantTest.AUTH_TOKEN);
+		Mockito.when(userServiceMock.deleteUser(UserConstantTest.USERID)).thenReturn(null);
+		userControllerMock.deleteUserDetailsByID(UserConstantTest.USERID, UserConstantTest.AUTHTOKEN);
 	}
 
 	/**
@@ -97,7 +98,7 @@ public class UserControllerTest {
 	 */
 	@Test
 	public void updateUserDetailsTest() {
-		Mockito.when(userServiceMock.findUserRoleByID(UserConstantTest.AUTH_TOKEN)).thenReturn(userDetailsMock);
-		userControllerMock.updateUserDetails(userDTOMock, UserConstantTest.AUTH_TOKEN);
+		Mockito.when(userServiceMock.findUserRoleByID(UserConstantTest.AUTHTOKEN)).thenReturn(userDetailsMock);
+		userControllerMock.updateUserDetails(userDTOMock, UserConstantTest.AUTHTOKEN);
 	}
 }
