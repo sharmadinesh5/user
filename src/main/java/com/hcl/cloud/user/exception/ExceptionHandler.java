@@ -17,24 +17,24 @@ import com.hcl.cloud.user.DTO.ExceptionResponseDTO;
  */
 @ControllerAdvice
 public class ExceptionHandler {
-	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(ExceptionHandler.class);
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(ExceptionHandler.class);
 
-	/**
-	 *
-	 *
-	 * @param request
-	 *            for HTTP.
-	 * @param exception
-	 *            for Exception .
-	 * @return tag for Response.
-	 */
-	@org.springframework.web.bind.annotation.ExceptionHandler(value = Exception.class)
-	public ResponseEntity<ExceptionResponseDTO> handleError(HttpServletRequest request, Exception exception) {
-		final ExceptionResponseDTO exceptionResponse = new ExceptionResponseDTO();
-		exceptionResponse.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
-		exceptionResponse.setDescription(exception.getMessage());
-		logger.error("Error " + exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-		return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    /**
+     *
+     *
+     * @param request
+     *            for HTTP.
+     * @param exception
+     *            for Exception .
+     * @return tag for Response.
+     */
+    @org.springframework.web.bind.annotation.ExceptionHandler(value = Exception.class)
+    public ResponseEntity<ExceptionResponseDTO> handleError(HttpServletRequest request, Exception exception) {
+        final ExceptionResponseDTO exceptionResponse = new ExceptionResponseDTO();
+        exceptionResponse.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        exceptionResponse.setDescription(exception.getMessage());
+        logger.error("Error " + exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 
-	}
+    }
 }
