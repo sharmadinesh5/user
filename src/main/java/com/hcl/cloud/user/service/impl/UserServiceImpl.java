@@ -45,11 +45,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
     ModelMapper mapper = null;
-    
-   /* @Autowired
-    private BCryptPasswordEncoder passwordEncoder;*/
-
-	
+  
     /**
      *
      * @param user
@@ -239,6 +235,7 @@ public class UserServiceImpl implements UserService {
      */
     public String getUserIDFromAccessToken(String accessToken) {
     	RestTemplate restTemplate = new RestTemplate();
+    	ResponseEntity<String> response =  null;
         final String url = "http://uaa.apps.cnpsandbox.dryice01.in.hclcnlabs.com/uaa/tokenInfo";
        try
        {
@@ -247,13 +244,13 @@ public class UserServiceImpl implements UserService {
         requestHeaders.add("Content-Type", MediaType.APPLICATION_JSON_VALUE);
         requestHeaders.add("Authorization", accessToken);
         HttpEntity<String> entity = new HttpEntity<String>(requestHeaders);
-        ResponseEntity<String> response= restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
+         response= restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
         LOG.debug("Response received ::: "+response.getBody());
        } catch (Exception e) {
     	   LOG.debug("Exception occure on calling of UAA ::: "+e.getCause());
        }
         final String userID = "dinesh@hcl.com";
-        return userID;
+        return response.getBody();
 
     }
 
