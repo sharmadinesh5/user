@@ -83,8 +83,18 @@ public class User {
      * isEnabled.
      */
     private boolean isEnabled = true;
+    
+    private boolean active_user=true;
 
-    /**
+    public boolean isActive_user() {
+		return active_user;
+	}
+
+	public void setActive_user(boolean active_user) {
+		this.active_user = active_user;
+	}
+
+	/**
      * Default constructor.
      */
     public User() {
