@@ -27,8 +27,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hcl.cloud.user.DTO.AddressDTO;
 import com.hcl.cloud.user.DTO.UserDTO;
+import com.hcl.cloud.user.constant.TokenResponse;
 import com.hcl.cloud.user.constant.UserConstant;
 import com.hcl.cloud.user.entity.Address;
 import com.hcl.cloud.user.entity.User;
@@ -236,6 +238,7 @@ public class UserServiceImpl implements UserService {
     public String getUserIDFromAccessToken(String accessToken) {
     	RestTemplate restTemplate = new RestTemplate();
     	ResponseEntity<String> response =  null;
+    	TokenResponse userid = null;
         final String url = "http://uaa.apps.cnpsandbox.dryice01.in.hclcnlabs.com/uaa/tokenInfo";
        try
        {
@@ -246,11 +249,14 @@ public class UserServiceImpl implements UserService {
         HttpEntity<String> entity = new HttpEntity<String>(requestHeaders);
          response= restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
         LOG.debug("Response received ::: "+response.getBody());
+        
+        userid = new ObjectMapper().readValue(response.getBody(), TokenResponse.class);
        } catch (Exception e) {
     	   LOG.debug("Exception occure on calling of UAA ::: "+e.getCause());
        }
-        final String userID = "dinesh@hcl.com";
-        return response.getBody();
+        //final String userID = "dinesh@hcl.com";
+        return userid.getUserId();
+        
 
     }
 

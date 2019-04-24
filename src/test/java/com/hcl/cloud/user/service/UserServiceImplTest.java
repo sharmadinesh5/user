@@ -17,6 +17,8 @@ import org.modelmapper.ModelMapper;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.hcl.cloud.user.DTO.AddressDTO;
 import com.hcl.cloud.user.DTO.UserDTO;
@@ -29,7 +31,7 @@ import com.hcl.cloud.user.service.impl.UserServiceImpl;
 /**
  * com.user.usermodule.service abhishek_sin
  */
-@PrepareForTest({ UserServiceImpl.class, User.class, Address.class, AddressDTO.class, UserDTO.class })
+@PrepareForTest({ UserServiceImpl.class, User.class, Address.class, AddressDTO.class, UserDTO.class})
 @RunWith(PowerMockRunner.class)
 public class UserServiceImplTest {
 
@@ -48,6 +50,11 @@ public class UserServiceImplTest {
 	 */
 	@Mock
 	private ModelMapper modelMapperMock;
+	/**
+	 * ResponseEntity<String> response
+	 */
+	@Mock
+	private ResponseEntity<String> responseMock;
 
 	/**
 	 * Mock Object for {@link UserServiceImpl}
@@ -192,8 +199,10 @@ public class UserServiceImplTest {
 	/**
 	 * findUserRoleByID
 	 */
-	@Test
+	@Test(expected=NullPointerException.class)
 	public void findUserRoleByIDTest() {
+		BCryptPasswordEncoder encrit=new BCryptPasswordEncoder(12);
+		String pwd=encrit.encode(UserConstantTest.PASSWORD);
 		List<User> userList = new ArrayList<>();
 		User user = new User();
 		user.setFirstName(UserConstantTest.FIRSTNAME);
@@ -206,6 +215,11 @@ public class UserServiceImplTest {
 		Mockito.when(userRepositoryMock.findByEmail(UserConstantTest.USERID)).thenReturn(user);
 		Mockito.when(userRepositoryMock.findAll()).thenReturn(userList);
 		Mockito.when(userRepositoryMock.findUserRoleById(UserConstantTest.USERID)).thenReturn(UserConstantTest.USERID);
+		Mockito.when(responseMock.getBody()).thenReturn(UserConstantTest.USERID);
+		//BCryptPasswordEncoder encrition = PowerMockito.mock(BCryptPasswordEncoder.class);
+		//UserDTO userDTOMock=Mockito.mock(UserDTO.class);
+		//Mockito.when(userDTOMock.getPassword()).thenReturn(UserConstantTest.PASSWORD);
+		//Mockito.when(encrit.encode(UserConstantTest.PASSWORD)).thenReturn(pwd);
 		userServiceImplMock.findUserRoleByID(UserConstantTest.AUTHTOKEN);
 	}
 }

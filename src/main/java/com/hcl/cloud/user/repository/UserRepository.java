@@ -15,7 +15,7 @@ public interface UserRepository extends JpaRepository<User, String> {
 
     public String deleteByUserName(String username);
 
-    @Query("SELECT U.role FROM User U  WHERE U.email= (:email_id)")
-    public String findUserRoleById(@Param("email_id") String email_id);
+    @Query("SELECT U.role FROM User U  WHERE U.userName= (:userName)")
+    public String findUserRoleById(@Param("userName") String userName);
 
 }
