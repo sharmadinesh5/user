@@ -16,7 +16,7 @@ public class AddressDTO {
      * address.
      */
     private String address;
-    /**
+    /**	
      * city.
      */
     private String city;
@@ -39,7 +39,7 @@ public class AddressDTO {
 
     /**
      *
-     * @return the id.
+     * @return tag the id.
      */
     public final long getId() {
         return id;
@@ -47,16 +47,16 @@ public class AddressDTO {
 
     /**
      *
-     * @param id
-     *            the id to set.
+     * @param ids
+     * the ids to set.
      */
-    public void setId(long id) {
-        this.id = id;
+    public void setId(final long ids) {
+        this.id = ids;
     }
 
     /**
      *
-     * @return the addressType.
+     * @return tag the addressType.
      */
     public final String getAddressType() {
         return addressType;
@@ -64,20 +64,20 @@ public class AddressDTO {
 
     /**
      *
-     * @param addressType
-     *            the addressType to set.
+     * @param addrType
+     * the addrType to set.
      */
-    public void setAddressType(String addressType) {
-        this.addressType = addressType;
+    public void setAddressType(final String addrType) {
+        this.addressType = addrType;
     }
 
     /**
      *
-     * @param pincode
-     *            the pincode to set.
+     * @param pcode
+     * the pcode to set.
      */
-    public final void setPincode(int pincode) {
-        this.pincode = pincode;
+    public final void setPincode(final int pcode) {
+        this.pincode = pcode;
     }
 
     /**
@@ -88,36 +88,28 @@ public class AddressDTO {
     }
 
     /**
-     * @return the state.
+     * @return tag the state.
      */
     public final String getState() {
         return state;
     }
 
     /**
-     * @param state
-     *            the state to set.
+     * @param st
+     * the state to set.
      */
-    public void setState(String state) {
-        this.state = state;
+    public void setState(final String st) {
+        this.state = st;
     }
 
     /**
-     * @return the pin.
+     * @return tag the pin.
      */
     public final int getPincode() {
         return pincode;
     }
 
-    /**
-     * @param pin
-     *            the pin to set.
-     */
-    public void setPinCode(int pincode) {
-        this.pincode = pincode;
-    }
-
-    /**
+     /**
      * @return the address.
      */
     public final String getAddress() {
@@ -125,26 +117,26 @@ public class AddressDTO {
     }
 
     /**
-     * @param address
-     *            the address to set.
+     * @param addr
+     * the addr to set.
      */
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAddress(final String addr) {
+        this.address = addr;
     }
 
     /**
-     * @return the city.
+     * @return tag the city.
      */
     public final String getCity() {
         return city;
     }
 
     /**
-     * @param city
-     *            the city to set.
+     * @param cty
+     *  the cty to set.
      */
-    public void setCity(String city) {
-        this.city = city;
+    public void setCity(final String cty) {
+        this.city = cty;
     }
 
     /**
@@ -155,11 +147,11 @@ public class AddressDTO {
     }
 
     /**
-     * @param country
-     *            the country to set.
+     * @param cntry
+     * the cntry to set.
      */
-    public void setCountry(String country) {
-        this.country = country;
+    public void setCountry(final String cntry) {
+        this.country = cntry;
     }
 
 }

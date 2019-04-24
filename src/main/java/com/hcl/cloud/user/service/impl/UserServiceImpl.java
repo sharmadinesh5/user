@@ -121,6 +121,7 @@ public class UserServiceImpl implements UserService {
             dto.setLastName(user.getLastName());
             dto.setPhoneNumber(user.getPhoneNumber());
             dto.setUserAddress(translateAddress(user.getUserAddress()));
+            dto.setActive_user(user.isActive_user());
             dto.setPassword(user.getPassword());
             userDTOs.add(dto);
         }
@@ -222,7 +223,7 @@ public class UserServiceImpl implements UserService {
      * getUserIDFromAccessToken
      */
     public String getUserIDFromAccessToken(String accessToken) {
-        final String userID = "abhi@hcl.com";
+        final String userID = "dinesh@hcl.com";
         return userID;
 
     }
