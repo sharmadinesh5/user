@@ -66,6 +66,7 @@ public class User {
     /**
      * role.
      */
+    @Column(name = "role",nullable=false)
     private String role;
     /**
      * active.

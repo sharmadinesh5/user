@@ -44,8 +44,7 @@ public class UserController {
      *            for save user details in DB.
      */
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<User> saveUserDetails(@RequestBody UserDTO user,
-            @RequestHeader(value = "accessToken", required = true) String accessToken) {
+    public ResponseEntity<User> saveUserDetails(@RequestBody UserDTO user) {
         if (logger.isDebugEnabled()) {
             logger.debug("user details: " + user);
         }

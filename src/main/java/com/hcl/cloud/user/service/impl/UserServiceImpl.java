@@ -3,6 +3,7 @@
  */
 package com.hcl.cloud.user.service.impl;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -14,8 +15,17 @@ import javax.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.hcl.cloud.user.DTO.AddressDTO;
 import com.hcl.cloud.user.DTO.UserDTO;
@@ -35,7 +45,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
     ModelMapper mapper = null;
+    
+   /* @Autowired
+    private BCryptPasswordEncoder passwordEncoder;*/
 
+	
     /**
      *
      * @param user
@@ -95,7 +109,8 @@ public class UserServiceImpl implements UserService {
         user.setLoacked(userDTO.isLoacked());
         user.setRole(userDTO.getRole());
         final Set<Address> set = translateAddressDTO(userDTO.getUserAddress(), user);
-        user.setPassword(userDTO.getPassword());
+        BCryptPasswordEncoder passwordEncoder= new BCryptPasswordEncoder(12);
+        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         user.setUserAddress(set);
         return user;
     }
@@ -223,6 +238,20 @@ public class UserServiceImpl implements UserService {
      * getUserIDFromAccessToken
      */
     public String getUserIDFromAccessToken(String accessToken) {
+    	RestTemplate restTemplate = new RestTemplate();
+        final String url = "http://uaa.apps.cnpsandbox.dryice01.in.hclcnlabs.com/uaa/tokenInfo";
+       try
+       {
+        URI uri = new URI(url);
+        HttpHeaders requestHeaders = new HttpHeaders();
+        requestHeaders.add("Content-Type", MediaType.APPLICATION_JSON_VALUE);
+        requestHeaders.add("Authorization", accessToken);
+        HttpEntity<String> entity = new HttpEntity<String>(requestHeaders);
+        ResponseEntity<String> response= restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
+        LOG.debug("Response received ::: "+response.getBody());
+       } catch (Exception e) {
+    	   LOG.debug("Exception occure on calling of UAA ::: "+e.getCause());
+       }
         final String userID = "dinesh@hcl.com";
         return userID;
 

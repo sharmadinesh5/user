@@ -10,3 +10,4 @@ applications:
   memory: 750M
   services: 
      - dbService
+     - log-drain
