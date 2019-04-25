@@ -26,7 +26,7 @@ import com.hcl.cloud.user.service.UserService;
  *
  */
 @RestController
-@RequestMapping(value = "/api/user-management/")
+//@RequestMapping(value = "/api/user-management/")
 public class UserController {
 
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -43,7 +43,7 @@ public class UserController {
      * @param user
      *            for save user details in DB.
      */
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public ResponseEntity<User> saveUserDetails(@RequestBody UserDTO user) {
         if (logger.isDebugEnabled()) {
             logger.debug("user details: " + user);
