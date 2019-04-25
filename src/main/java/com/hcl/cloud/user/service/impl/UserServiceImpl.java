@@ -245,7 +245,7 @@ public class UserServiceImpl implements UserService {
         URI uri = new URI(url);
         HttpHeaders requestHeaders = new HttpHeaders();
         requestHeaders.add("Content-Type", MediaType.APPLICATION_JSON_VALUE);
-        requestHeaders.add("Authorization", accessToken);
+        requestHeaders.add("accessToken", accessToken);
         HttpEntity<String> entity = new HttpEntity<String>(requestHeaders);
          response= restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
         LOG.debug("Response received ::: "+response.getBody());
