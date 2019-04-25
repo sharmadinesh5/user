@@ -43,7 +43,7 @@ public class UserController {
      * @param user
      *            for save user details in DB.
      */
-    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity<User> saveUserDetails(@RequestBody UserDTO user) {
         if (logger.isDebugEnabled()) {
             logger.debug("user details: " + user);
