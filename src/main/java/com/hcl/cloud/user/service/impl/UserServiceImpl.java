@@ -258,11 +258,11 @@ public class UserServiceImpl implements UserService {
         requestHeaders.add("accessToken", accessToken);
         HttpEntity<String> entity = new HttpEntity<String>(requestHeaders);
          response= restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
-        LOG.debug("Response received ::: "+response.getBody());
+        LOG.info("Response received from UAA ::: "+response.getBody());
         
         userid = new ObjectMapper().readValue(response.getBody(), TokenResponse.class);
        } catch (Exception e) {
-    	   LOG.debug("Exception occure on calling of UAA ::: "+e.getCause());
+    	   LOG.info("Exception occure on calling of UAA ::: "+e.getCause());
        }
         //final String userID = "dinesh@hcl.com";
         return userid.getUserId();
