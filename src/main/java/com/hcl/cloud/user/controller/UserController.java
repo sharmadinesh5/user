@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hcl.cloud.user.DTO.UserDTO;
+import com.hcl.cloud.user.constant.UserConstant;
+import com.hcl.cloud.user.constant.UserResponseEntity;
 import com.hcl.cloud.user.entity.User;
 import com.hcl.cloud.user.service.UserService;
 
@@ -43,13 +45,13 @@ public class UserController {
      * @param user
      *            for save user details in DB.
      */
-    @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<User> saveUserDetails(@RequestBody UserDTO user) {
-        if (logger.isDebugEnabled()) {
-            logger.debug("user details: " + user);
+    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+    public ResponseEntity<UserResponseEntity> saveUserDetails(@RequestBody UserDTO user) {
+        if (logger.isInfoEnabled()) {
+            logger.info("User Request is received for Registration: ");
         }
-        final User userDetails = userService.saveUser(user);
-        return new ResponseEntity<>(userDetails, HttpStatus.OK);
+        userService.saveUser(user);
+        return new ResponseEntity<UserResponseEntity>(new UserResponseEntity(HttpStatus.CREATED.value(),UserConstant.MESSAGE ),HttpStatus.CREATED);
     }
 
     /**
@@ -61,11 +63,20 @@ public class UserController {
      * @throws NotFoundException
      */
     @RequestMapping(value = "/", method = RequestMethod.PUT)
-    public ResponseEntity<String> updateUserDetails(@RequestBody UserDTO user,
-            @RequestHeader(value = "accessToken", required = true) String accessToken) {
-        userService.updateUser(user);
-        logger.debug("updateUserDetails : " + user);
-        return new ResponseEntity<>("Successfully updated ", HttpStatus.OK);
+    public ResponseEntity<UserResponseEntity> updateUserDetails(@RequestBody UserDTO user/*,
+            @RequestHeader(value = "accessToken", required = true) String accessToken*/) {
+    	
+    	if (logger.isInfoEnabled()) {
+            logger.info("User Request is received for User Update :::::: "+user.getEmail());
+        }
+        User userUpdate  = userService.updateUser(user);
+        if (userUpdate!=null) {
+        
+        logger.debug("User detail updated succesfully for : " + userUpdate.getEmail());
+        return new ResponseEntity<>(new UserResponseEntity(HttpStatus.OK.value(),UserConstant.UPDATE_MESSAGE ),HttpStatus.OK);
+        } else {
+        	 return new ResponseEntity<>(new UserResponseEntity(HttpStatus.NOT_FOUND.value(),UserConstant.UPDATE_MESSAGE_ERROR ),HttpStatus.NOT_FOUND);
+        }
     }
 
     /**
@@ -92,11 +103,22 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/{userid}", method = RequestMethod.DELETE)
-    public ResponseEntity<String> deleteUserDetailsByID(@PathVariable("userid") String userid,
+    public ResponseEntity<UserResponseEntity> deleteUserDetailsByID(@PathVariable("userid") String userid,
             @RequestHeader(value = "accessToken", required = true) String accessToken) {
         String message = null;
+        
+        if (logger.isInfoEnabled()) {
+            logger.info("User Request is received for User Update :::::: "+userid);
+        }
         message = userService.deleteUser(userid);
-        return new ResponseEntity<>(message, HttpStatus.OK);
+        
+        if (message!=null) {
+            
+            logger.debug("User deleted succesfully for : " + userid);
+            return new ResponseEntity<>(new UserResponseEntity(HttpStatus.OK.value(),UserConstant.DELETE_MESSAGE ),HttpStatus.OK);
+            } else {
+            	 return new ResponseEntity<>(new UserResponseEntity(HttpStatus.NOT_FOUND.value(),UserConstant.UPDATE_MESSAGE_ERROR ),HttpStatus.NOT_FOUND);
+            }
     }
 
 }

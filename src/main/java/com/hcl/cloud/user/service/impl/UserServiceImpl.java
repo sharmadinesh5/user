@@ -15,7 +15,6 @@ import javax.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -23,7 +22,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -46,7 +44,12 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
-    ModelMapper mapper = null;
+    
+    public void setUserRepository(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
+
+	ModelMapper mapper = null;
   
     /**
      *
@@ -59,9 +62,11 @@ public class UserServiceImpl implements UserService {
     public User saveUser(UserDTO userDTO) {
         User user = new User();
         if (userDTO != null) {
-            LOG.debug("userDTO details: " + userDTO);
             user = translateDTO(userDTO, user);
             user = userRepository.save(user);
+            if(user!=null) {
+            	 LOG.info("User Registration successfully completed FOR  " + userDTO.getEmail());
+            }
         }
         return user;
     }
@@ -73,6 +78,7 @@ public class UserServiceImpl implements UserService {
      * @throws NotFoundException
      */
     @Override
+    @Transactional
     public User updateUser(UserDTO userDTO) {
         User user = userRepository.findByEmail(userDTO.getEmail());
         if (user != null) {
@@ -197,12 +203,16 @@ public class UserServiceImpl implements UserService {
      *            for Delete user.
      */
     @Override
+    @Transactional
     public String deleteUser(String emailId) {
-        LOG.debug("Enter deleteUser method and userId: " + emailId);
+        LOG.info("Inside deleteUser method for : " + emailId);
         final User user = userRepository.findByEmail(emailId);
         if (user != null) {
-            userRepository.save(user);
-            LOG.debug("Updated active flag ");
+            userRepository.delete(user);
+            LOG.info("User deleted successfully for ::: "+emailId);
+        } else {
+        	LOG.info("User not found for ::: "+emailId);
+        	return null;
         }
         return "delete successfully";
     }

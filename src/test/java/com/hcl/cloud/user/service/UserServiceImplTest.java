@@ -78,7 +78,7 @@ public class UserServiceImplTest {
 	 * saveUserdetailsTest
 	 */
 	@Test
-	public void saveUserdetailsSuccessTest() {
+	public void saveUserdetailsUpdateTest() {
 		AddressDTO addressDTOMock = PowerMockito.mock(AddressDTO.class);
 		UserDTO userDTOMock = PowerMockito.mock(UserDTO.class);
 		Mockito.when(addressDTOMock.getAddress()).thenReturn(UserConstantTest.ADDRESS);
@@ -114,7 +114,7 @@ public class UserServiceImplTest {
 		Mockito.when(userRepositoryMock.save(userMock)).thenReturn(userMock);
 		Mockito.when(modelMapperMock.map(userMock, UserDTO.class)).thenReturn(userDTOMock);
 		Mockito.when(userDTOMock.getUserAddress()).thenReturn(addDTOList);
-		//userServiceImplMock.saveUser(userDTO);
+		userServiceImplMock.updateUser(userDTO);
 	}
 
 	/**
@@ -122,28 +122,36 @@ public class UserServiceImplTest {
 	 */
 
 	@Test
-	public void saveUserdetailsFailTest() {
-		AddressDTO addressDTOMock = PowerMockito.mock(AddressDTO.class);
-		UserDTO userDTOMock = PowerMockito.mock(UserDTO.class);
-		Mockito.when(addressDTOMock.getAddress()).thenReturn(UserConstantTest.ADDRESS);
-		Mockito.when(addressDTOMock.getCity()).thenReturn(UserConstantTest.CITY);
-		Mockito.when(addressDTOMock.getCountry()).thenReturn(UserConstantTest.COUNTRY);
-		Mockito.when(addressDTOMock.getPincode()).thenReturn(UserConstantTest.PINCODE);
-		Mockito.when(addressDTOMock.getState()).thenReturn(UserConstantTest.STATE);
-		Mockito.when(addressDTOMock.getAddressType()).thenReturn(UserConstantTest.BILLING);
-		AddressDTO addressDTO = new AddressDTO();
-		UserDTO userDTO = new UserDTO();
-		List<AddressDTO> addDTOList = new ArrayList<>();
-		addDTOList.add(addressDTO);
-		userDTO.setUserAddress(addDTOList);
-		Mockito.when(userDTOMock.getEmail()).thenReturn(UserConstantTest.EMAIL);
-		Mockito.when(userDTOMock.getUserAddress()).thenReturn(addDTOList);
-		Mockito.when(userDTOMock.getFirstName()).thenReturn(UserConstantTest.FIRSTNAME);
-		Mockito.when(userDTOMock.getLastName()).thenReturn(UserConstantTest.LASTNAME);
-		Mockito.when(userRepositoryMock.save(userMock)).thenReturn(userMock);
-		Mockito.when(modelMapperMock.map(userMock, UserDTO.class)).thenReturn(userDTOMock);
-		Mockito.when(userDTOMock.getUserAddress()).thenReturn(addDTOList);
-		//userServiceImplMock.saveUser(userDTO);
+	public void saveUserdetailsSuccessTest() {
+	UserServiceImpl userServiceImpl = new UserServiceImpl();
+		
+	UserDTO userDTO = new UserDTO();
+	userDTO.setEmail("abc@gail.com");
+	userDTO.setActive(1);
+	userDTO.setEnabled(true);
+	userDTO.setFirstName("ABC");
+	userDTO.setLastName("B");
+	userDTO.setExpired(false);
+	userDTO.setRole("A");
+	userDTO.setPassword("abc");
+	AddressDTO addressDTO = new AddressDTO();
+	addressDTO.setAddress("asfg");
+	addressDTO.setCity("delhi");
+	addressDTO.setAddressType("billing");
+	addressDTO.setId(1);
+	addressDTO.setPincode(121);
+	addressDTO.setCountry("India");
+	addressDTO.setState("Har");
+	List<AddressDTO> userAddress = new ArrayList<AddressDTO>();
+	userAddress.add(addressDTO);
+	userDTO.setUserAddress(userAddress);
+	User user = new User();
+	user.setEmail("abc@gmail.com");
+	 
+	UserRepository userRepository = Mockito.mock(UserRepository.class);
+	userServiceImpl.setUserRepository(userRepository);
+	Mockito.when(userRepositoryMock.save(Mockito.any(User.class))).thenReturn(user);
+	userServiceImpl.saveUser(userDTO );
 	}
 
 	/**
@@ -152,7 +160,7 @@ public class UserServiceImplTest {
 
 	@Test
 	public void updateUserdetailsTest() {
-		AddressDTO addressDTOMock = PowerMockito.mock(AddressDTO.class);
+		/*AddressDTO addressDTOMock = PowerMockito.mock(AddressDTO.class);
 		UserDTO userDTOMock = PowerMockito.mock(UserDTO.class);
 		List<AddressDTO> addDTOList = new ArrayList<>();
 		addDTOList.add(addressDTOMock);
@@ -175,7 +183,36 @@ public class UserServiceImplTest {
 		Mockito.when(userDTOMock.getLastName()).thenReturn(UserConstantTest.LASTNAME);
 		Mockito.when(userRepositoryMock.save(userMock)).thenReturn(userMock);
 		Mockito.when(modelMapperMock.map(userMock, UserDTO.class)).thenReturn(userDTOMock);
-	//	userServiceImplMock.updateUser(userDTO);
+		userServiceImplMock.updateUser(userDTO);*/
+		UserServiceImpl userServiceImpl = new UserServiceImpl();
+		
+		UserDTO userDTO = new UserDTO();
+		userDTO.setEmail("abc@gail.com");
+		userDTO.setActive(1);
+		userDTO.setEnabled(true);
+		userDTO.setFirstName("ABC");
+		userDTO.setLastName("B");
+		userDTO.setExpired(false);
+		userDTO.setRole("A");
+		userDTO.setPassword("abc");
+		AddressDTO addressDTO = new AddressDTO();
+		addressDTO.setAddress("asfg");
+		addressDTO.setCity("delhi");
+		addressDTO.setId(1);
+		addressDTO.setPincode(121);
+		addressDTO.setCountry("India");
+		addressDTO.setState("Har");
+		addressDTO.setAddressType("billing");
+		List<AddressDTO> userAddress = new ArrayList<AddressDTO>();
+		userAddress.add(addressDTO);
+		userDTO.setUserAddress(userAddress);
+		 User user = new User();
+		 user.setEmail("abc@gmail.com");
+		 
+		UserRepository userRepository = Mockito.mock(UserRepository.class);
+		userServiceImpl.setUserRepository(userRepository);
+		Mockito.when(userRepository.save(user)).thenReturn(new User());
+		userServiceImpl.updateUser(userDTO );
 	}
 
 	/**
@@ -183,18 +220,18 @@ public class UserServiceImplTest {
 	 */
 	@Test
 	public void deleteUserdetailsTest() {
-		/*Mockito.when(userRepositoryMock.save(userMock)).thenReturn(userMock);
+		Mockito.when(userRepositoryMock.save(userMock)).thenReturn(userMock);
 		Mockito.when(userRepositoryMock.findByEmail(UserConstantTest.EMAIL)).thenReturn(userMock);
-		userServiceImplMock.deleteUser(UserConstantTest.USERNAME);*/
+		userServiceImplMock.deleteUser(UserConstantTest.USERNAME);
 	}
 
 	/**
 	 * deleteUserdetailsFailTest
 	 */
-	@Test
+	/*@Test
 	public void deleteUserdetailsFailTest() {
 		userServiceImplMock.deleteUser(UserConstantTest.USERNAME);
-	}
+	}*/
 
 	/**
 	 * findUserRoleByID
@@ -212,14 +249,6 @@ public class UserServiceImplTest {
 		user.setUserName(UserConstantTest.USERNAME);
 		user.setEmail(UserConstantTest.EMAIL);
 		userList.add(user);
-		Mockito.when(userRepositoryMock.findByEmail(UserConstantTest.USERID)).thenReturn(user);
-		Mockito.when(userRepositoryMock.findAll()).thenReturn(userList);
-		Mockito.when(userRepositoryMock.findUserRoleById(UserConstantTest.USERID)).thenReturn(UserConstantTest.USERID);
-		Mockito.when(responseMock.getBody()).thenReturn(UserConstantTest.USERID);
-		//BCryptPasswordEncoder encrition = PowerMockito.mock(BCryptPasswordEncoder.class);
-		//UserDTO userDTOMock=Mockito.mock(UserDTO.class);
-		//Mockito.when(userDTOMock.getPassword()).thenReturn(UserConstantTest.PASSWORD);
-		//Mockito.when(encrit.encode(UserConstantTest.PASSWORD)).thenReturn(pwd);
 		userServiceImplMock.findUserRoleByID(UserConstantTest.AUTHTOKEN);
 	}
 }
