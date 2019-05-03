@@ -99,6 +99,6 @@ public class UserControllerTest {
 	@Test
 	public void updateUserDetailsTest() {
 		Mockito.when(userServiceMock.findUserRoleByID(UserConstantTest.AUTHTOKEN)).thenReturn(userDetailsMock);
-		userControllerMock.updateUserDetails(userDTOMock, UserConstantTest.AUTHTOKEN);
+		userControllerMock.updateUserDetails(userDTOMock/*, UserConstantTest.AUTHTOKEN*/);
 	}
 }
