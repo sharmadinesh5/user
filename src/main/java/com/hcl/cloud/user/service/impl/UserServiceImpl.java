@@ -229,6 +229,7 @@ public class UserServiceImpl implements UserService {
         User user = null;
         List<User> userList = new ArrayList<>();
         List<UserDTO> dtos = null;
+        LOG.info("Request received for  accessToken:::::::: "+accessToken);
         final String emailID = getUserIDFromAccessToken(accessToken);
         final String userRole = userRepository.findUserRoleById(emailID);
         if (UserConstant.ADMINROLE.equalsIgnoreCase(userRole)) {
@@ -252,12 +253,14 @@ public class UserServiceImpl implements UserService {
         final String url = "http://uaa.apps.cnpsandbox.dryice01.in.hclcnlabs.com/uaa/tokenInfo";
        try
        {
+        LOG.info("Requesting user detail from UAA for :::::::: "+accessToken);
         URI uri = new URI(url);
         HttpHeaders requestHeaders = new HttpHeaders();
         requestHeaders.add("Content-Type", MediaType.APPLICATION_JSON_VALUE);
         requestHeaders.add("accessToken", accessToken);
         HttpEntity<String> entity = new HttpEntity<String>(requestHeaders);
          response= restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
+         
         LOG.info("Response received from UAA ::: "+response.getBody());
         
         userid = new ObjectMapper().readValue(response.getBody(), TokenResponse.class);
