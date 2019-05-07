@@ -35,7 +35,6 @@ import junit.framework.Assert;
  * com.user.usermodule.service abhishek_sin
  */
 @PrepareForTest({ UserServiceImpl.class, User.class, Address.class, AddressDTO.class, UserDTO.class})
-@RunWith(PowerMockRunner.class)
 public class UserServiceImplTest {
 
 	/**

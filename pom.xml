@@ -115,10 +115,10 @@
 				<version>0.8.2</version>
 				<configuration>
 					<excludes>
-						<exclude>*.com.hcl.cloud.user.constant.*</exclude>
+						<!-- <exclude>*.com.hcl.cloud.user.constant.*</exclude>
 						<exclude>*.com.hcl.cloud.user.DTO.*</exclude>
 						<exclude>*.com.hcl.cloud.user.DTO.*</exclude>
-						<exclude>*.com.hcl.cloud.user.repository.*</exclude>
+						<exclude>*.com.hcl.cloud.user.repository.*</exclude> -->
 
 					</excludes>
 				</configuration>
